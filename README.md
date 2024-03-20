@@ -1,40 +1,88 @@
-# Symfony Base Repository
+Symfony Demo Application
+========================
 
-This repository contains the basic configuration to run Symfony applications with MySQL database
+The "Symfony Demo Application" is a reference application created to show how
+to develop applications following the [Symfony Best Practices][1].
 
-## Content
-- PHP-APACHE container running version 8.2
-- MySQL container running version 8.2.0
+You can also learn about these practices in [the official Symfony Book][5].
 
-## Instructions
-- `make build` to build the containers
-- `make start` to start the containers
-- `make stop` to stop the containers
-- `make restart` to restart the containers
-- `make prepare` to install dependencies with composer (once the project has been created)
-- `make logs` to see application logs
-- `make ssh` to SSH into the application container
+Requirements
+------------
 
-## Create and Run the application
-- [Optional] Replace all the occurrences of symfony-app in the whole project with some name more meaningful for your project
-- `make start` to build and start the containers (you can use your IDE find and replace option to do so)
-- SSH into the container with `make ssh`
-- Create a Symfony project using the CLI (e.g. `symfony new --no-git --dir project`). See `symfony`command info for more options
-- Move all the content in the `project` folder to the root of the repository (do not forget to move also `.env`file)
-- Add the content of `.gitignore` file to the root one, it should look like this
+  * PHP 8.2.0 or higher;
+  * PDO-SQLite PHP extension enabled;
+  * and the [usual Symfony application requirements][2].
+
+Installation
+------------
+
+There are 3 different ways of installing this project depending on your needs:
+
+**Option 1.** [Download Symfony CLI][4] and use the `symfony` binary installed
+on your computer to run this command:
+
+```bash
+$ symfony new --demo my_project
 ```
-.idea
-.vscode
-docker-compose.yml
 
-###> symfony/framework-bundle ###
-/.env.local
-/.env.local.php
-/.env.*.local
-/config/secrets/prod/prod.decrypt.private.php
-/public/bundles/
-/var/
-/vendor/
-###< symfony/framework-bundle ###
+**Option 2.** [Download Composer][6] and use the `composer` binary installed
+on your computer to run these commands:
+
+```bash
+# you can create a new project based on the Symfony Demo project...
+$ composer create-project symfony/symfony-demo my_project
+
+# ...or you can clone the code repository and install its dependencies
+$ git clone https://github.com/symfony/demo.git my_project
+$ cd my_project/
+$ composer install
 ```
-- Once you have installed you Symfony application go to http://localhost:1000
+
+**Option 3.** Click the following button to deploy this project on Platform.sh,
+the official Symfony PaaS, so you can try it without installing anything locally:
+
+<p align="center">
+<a href="https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/symfonycorp/platformsh-symfony-template-metadata/main/symfony-demo.template.yaml&utm_content=symfonycorp&utm_source=github&utm_medium=button&utm_campaign=deploy_on_platform"><img src="https://platform.sh/images/deploy/lg-blue.svg" alt="Deploy on Platform.sh" width="180px" /></a>
+</p>
+
+Usage
+-----
+
+There's no need to configure anything before running the application. There are
+2 different ways of running this application depending on your needs:
+
+**Option 1.** [Download Symfony CLI][4] and run this command:
+
+```bash
+$ cd my_project/
+$ symfony serve
+```
+
+Then access the application in your browser at the given URL (<https://localhost:8000> by default).
+
+**Option 2.** Use a web server like Nginx or Apache to run the application
+(read the documentation about [configuring a web server for Symfony][3]).
+
+On your local machine, you can run this command to use the built-in PHP web server:
+
+```bash
+$ cd my_project/
+$ php -S localhost:8000 -t public/
+```
+
+Tests
+-----
+
+Execute this command to run tests:
+
+```bash
+$ cd my_project/
+$ ./bin/phpunit
+```
+
+[1]: https://symfony.com/doc/current/best_practices.html
+[2]: https://symfony.com/doc/current/setup.html#technical-requirements
+[3]: https://symfony.com/doc/current/setup/web_server_configuration.html
+[4]: https://symfony.com/download
+[5]: https://symfony.com/book
+[6]: https://getcomposer.org/
